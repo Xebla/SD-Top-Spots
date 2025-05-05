@@ -60,7 +60,7 @@ describe('San Diego Top Spots', function() {
   });
 
   it('should find a link with the correct map url', function() {
-    nightmare
+   nightmare
       .goto(url)
       .wait('table')
       .evaluate(function () {

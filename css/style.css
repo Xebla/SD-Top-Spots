@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    text-align: center;
+    color: #333
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #cccc
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.info-window {
+    position: relative;
+    padding: 4px;
+    font-family: Arial, sans-serif;
+}
+
+.close-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 2px 6px;
+    font-size: 12px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.spot-row {
+    transition: background-color 0.3s ease;
+}
+
+.spot-row:hover {
+    background-color: #f1f1f1;
+}
+
+.spot.name {
+    font-weight: bold;
+}
+
+.spot-description {
+    color: #666;
+}
+
+/* .map-link
+.directions-link
+.spot-distance */
