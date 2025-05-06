@@ -1,14 +1,8 @@
-console.log("main.js loaded");
+console.log("main.js loaded!");
 
 let currentInfoWindow = new google.maps.InfoWindow(); // Reusable InfoWindow
-// let userLocation;
+let userLocation;
 let map;
-
-function closeInfoWindow() {
-    if (currentInfoWindow) {
-        currentInfoWindow.close();
-    }
-}
 
 $(document).ready(function() {
     console.log("DOM is ready!");
@@ -18,46 +12,47 @@ $(document).ready(function() {
     loadTopSpots();
 });
  
-    // Called by Google Maps once it loads
-// function initMap() {
-//     console.log("Google Maps is ready!");
+// Called by Google Maps in HTML script
+function initMap() {
+    console.log("Google Maps is ready!");
 
-//     // Opens up Google Map inside #map element centered on San Diego
-//     map = new google.maps.Map(document.getElementById("map"), {
-//         center: { lat: 32.7157, lng: -117.1611 }, 
-//         zoom : 12
-//     });
+    // Opens up Google Map inside #map element centered on San Diego
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 32.7157, lng: -117.1611 }, 
+        zoom : 12
+    });
 
-//     // Get user's current location
-//     navigator.geolocation.getCurrentPosition(
-//         function (position) {
-//             userLocation = {
-//                 lat: position.coords.latitude,
-//                 lng: position.coords.longitude
-//             };
+    // Get user's current location
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
 
-//             // Show user's location on map
-//             new google.maps.Marker({
-//                 position: userLocation,
-//                 map: map,
-//                 title: "You are here"
-//             });
+            // Show user's location on map
+            new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                title: "You are here"
+            });
 
-//             // Load top Spots once user location is known
-//             loadTopSpots();
-//         },
+            // Load top Spots once user location is known
+            loadTopSpots();
+        },
 
-//         // Load table even without user location
-//         function (error) {
-//             console.warn("Geolocation failed or was denied. Using default San Diego center.");
-//             userLocation = { lat: 32.7157, lng: -117.1611 };
-//             loadTopSpots(); 
-//         }
-//     );
-// }
+        // Load table even without user location
+        function (error) {
+            console.warn("Geolocation failed or was denied. Using default San Diego center.");
+            userLocation = { lat: 32.7157, lng: -117.1611 };
+            loadTopSpots(); 
+        }
+    )};
+
+initMap();
 
 function loadTopSpots() {
-    console.log("Loading top spots...");
+    console.log("Loading top spots!");
 
     $.getJSON("data.json", function(topSpots) {
         console.log("Top spots loaded:", topSpots);
@@ -75,7 +70,7 @@ function loadTopSpots() {
     
                 // Adds a marker on the map for each spot
                 if (map) {
-                    console.log("Marker loaded...")
+                    console.log("Marker loaded!")
                     const marker = new google.maps.Marker({
                         position: { lat, lng },
                         map,
@@ -84,6 +79,14 @@ function loadTopSpots() {
 
                     // When marker is clicked, open top spot content
                     marker.addListener('click', () => {
+                        console.log('Click listener loaded!')
+                        const infoContent = `
+                            <div class="info-window">
+                                <h2>${spot.name}</h2>
+                                <p>${spot.description}</p>
+                                <a href="${mapLink}" target="_blank">Open in Maps</a>
+                            </div>
+                        `;
                         currentInfoWindow.setContent(infoContent);
                         currentInfoWindow.open(map, marker);
                     });
@@ -96,26 +99,14 @@ function loadTopSpots() {
                 const row = `
                     <tr class="spot-row">
                         <td class="spot-name">${spot.name}</td>
-                        <td>${spot.description}</td>
-                        <td><a href="${mapLink}" target="_blank">Map</a></td>
-                        <td><a href="${directionsLink}" target="_blank">Directions</a></td>
-                        <td>${distanceMiles}</td>
+                        <td class="spot-description">${spot.description}</td>
+                        <td><a class="map-link" href="${mapLink}" target="_blank">Map</a></td>
+                        <td><a class="directions-link" href="${directionsLink}" target="_blank">Directions</a></td>
+                        <td class="spot-distance">${distanceMiles}</td>
                     </tr>
                 `;
                 $("#spots-table").append(row);
         });                     
     });
 }
-
-// function sortTableByDistance() {
-//     const rows = $("#spots-table tr").get();
-
-//     rows.sort((a, b) => {
-//         const distA = parseFloat($(a).children("td").eq(4).text());
-//         const distB = parseFloat($(b).children("td").eq(4).text());
-//         return distA - distB;
-//     });
-
-//     rows.forEach(row => $("#spots-table").append(row));
-// }
 

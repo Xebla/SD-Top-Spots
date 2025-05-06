@@ -6,28 +6,25 @@
     <title>San Diego Top Spots</title>
     <!-- Link CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <script>
-        // Called by Google Maps once it loads
-        function initMap() {
-            console.log("Google Maps is ready!");
+    <!-- Link Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap" rel="stylesheet">
 
-            // Opens up Google Map inside #map element centered on San Diego
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: 32.7157, lng: -117.1611 },
-                zoom: 12
-            });
-        }
-    </script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWyxMyKA8iVw9OUtqg0A9o3nscfqYBw1Y&libraries=geometry&callback=initMap"
-        async defer>
-        </script>
+    <!-- Loads Google Map API -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWyxMyKA8iVw9OUtqg0A9o3nscfqYBw1Y&libraries=geometry"></script>
+
+    <!-- Loads Jquery library-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 
 <body>
     <h1>San Diego Top Spots</h1>
 
-    <div id="map" style="height: 500px; width: 100%;"></div>
+    <div id="map"></div>
 
     <table>
         <thead>
@@ -36,19 +33,14 @@
                 <th>Description</th>
                 <th>Link</th>
                 <th>Directions</th>
-                <th>Distance (mi)</th>
+                <th>Distance (miles)</th>
             </tr>
         </thead>
         <tbody id="spots-table">
         </tbody>
     </table>
-
-    <!-- Loads Jquery library-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Load script last so all dependencies are ready -->
     <script src="main.js" charset="utf-8"></script>
-
 </body>
 
 </html>
