@@ -2,25 +2,37 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
     background-color: #f9f9f9;
+    color: #333;
+    background-image: url(https://images.unsplash.com/photo-1549496620-482b41977c29?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
     text-align: center;
-    color: #333
+    color: #000000;
+    margin-bottom: 30px;
+    font-family: "Ribeye Marrow", sans-serif;
 }
 
 #map {
     height: 400px;
-    width: 100%;
+    width: 75%;
+    margin: 0 auto;
     margin-bottom: 20px;
-    border: 1px solid #cccc
+    border: 2px solid #000;
+    border-radius: 6px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.85);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
 }
 
 th, td {
@@ -31,12 +43,37 @@ th, td {
 
 th {
     background-color: #f2f2f2;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
 .info-window {
     position: relative;
-    padding: 4px;
+    padding: 8px;
     font-family: Arial, sans-serif;
+    max-width: 220px;
+}
+
+.info-window h2 {
+    font-size: 1.1rem;
+    margin: 0 0 5px;
+    color: #2c3e50;
+}
+
+.info-window p {
+    font-size: 0.9rem;
+    margin: 0 0 10px;
+    color: #555;
+}
+
+.info-window a {
+    font-size: 0.9rem;
+    color: #1ebde5;
+    text-decoration: none;
+}
+
+.info-window a:hover {
+    text-decoration: underline;
 }
 
 .close-btn {
@@ -63,12 +100,26 @@ th {
 
 .spot.name {
     font-weight: bold;
+    color: #2c3e50;
 }
 
 .spot-description {
     color: #666;
 }
 
-/* .map-link
-.directions-link
-.spot-distance */
+.map-link,
+.directions-link {
+    color: #1e88e5;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.map-link:hover,
+.directions-link:hover {
+    text-decoration: underline;
+}
+
+.spot-distance {
+    font-size: 0.9rem;
+    color: #444;
+}
